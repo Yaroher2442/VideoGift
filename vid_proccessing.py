@@ -33,8 +33,8 @@ def create_vid(u_uid, audio_path):
     audio = AudioFileClip(audio_path)
     print(audio.duration)
     image = cv2.imread(f'{u_uid}/img_buf.jpg')
-    clip = ImageClip(image).set_duration(audio.duration).set_audio(audio)
-    # clip.set_audio(audio)
+    im_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    clip = ImageClip(im_rgb).set_duration(audio.duration).set_audio(audio)
     return clip
 
 
@@ -53,5 +53,5 @@ def concatenate(phrase):
 
 if __name__ == '__main__':
     # create_vid('asfaf', create_audio('привет как твои дела?'))
-    concatenate('Мишка косолапый по лесу идёт')
+    concatenate('как жить в россии дальше')
     # print(create_audio('привеет'))
