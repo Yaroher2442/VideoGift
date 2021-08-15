@@ -13,22 +13,17 @@ def searching(word):
         if '.jpg' in i or '.jpeg' in i or '.JPG' in i:
             first_link = i
             break
-    download_req=requests.get(first_link)
+    download_req = requests.get(first_link)
     return io.BytesIO(download_req.content)
 
 
 # searching('Ярик')
 
 def get_jpg(text):
-    res = []
-    for i in text:
-        text = text.replace('  ', ' ')
-    word = text.split(' ')
-    for i in word:
-        q=searching(i)
-        res.append(q)
-    return res
+    new_text = text.replace('  ', ' ')
+    word = new_text.split(' ')
+    return [searching(i) for i in word]
 
 
 if __name__ == '__main__':
-    get_jpg('Мишка косолапый По лесу идет, Шишки собирает, Песенки поет.')
+# get_jpg('Мишка косолапый По лесу идет, Шишки собирает, Песенки поет.')
